@@ -132,10 +132,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 85vh;
     padding: 0 1rem;
     text-align: center;
-
     background: linear-gradient(rgba(254, 8, 0, 0.6),
             rgba(254, 8, 0, 0.6)),
         url('../artem-kniaz-DqgMHzeio7g-unsplash.jpg') center/cover no-repeat;
@@ -235,13 +234,14 @@
     gap: 20px;
     text-align: center;
     width: 100%;
+
 }
 
 .gallery-section h1 {
     color: #fff;
     text-transform: capitalize;
     font-size: 36px;
-    margin-top: 8px;
+    margin-top: 32px;
 }
 
 .gallery-section h2 {
@@ -256,6 +256,7 @@
     align-items: center;
     justify-content: center;
     background-color: var(--Vermelho);
+    margin-bottom: 32px;
 }
 
 .carousel-viewport {
@@ -308,54 +309,54 @@
 }
 
 .imagem-modal {
-  display: none;
-  position: fixed;
-  z-index: 99999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
 }
 
 .imagem-modal__img {
-  max-width: 90%;
-  max-height: 90%;
- 
+    max-width: 90%;
+    max-height: 90%;
+
 }
 
 .imagem-modal__close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .imagem-modal__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0);
-  color: #fe0000;
-  border: none;
-  font-size: 48px;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0);
+    color: #fe0000;
+    border: none;
+    font-size: 48px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 1;
 }
 
 .imagem-modal__nav.left {
-  left: 20px;
+    left: 20px;
 }
 
 .imagem-modal__nav.right {
-  right: 20px;
+    right: 20px;
 }
 
 
@@ -375,12 +376,17 @@
     max-width: 850px;
     color: #000;
     padding: 0 10px;
+    margin-top: 32px;
 }
 
-.about-text h2 {
+.wrapper-subtitle h2 {
     font-size: 32px;
     color: var(--Vermelho);
-    margin: 8px;
+    font-weight: bold;
+}
+
+.wrapper-subtitle span{
+    text-transform: capitalize;
     font-weight: bold;
 }
 
@@ -388,8 +394,30 @@
     text-align: justify;
 }
 
+.about-text img{
+    width: 80%;;
+}
+
 .about-text strong {
     font-weight: bold;
+}
+
+.nossos-objetivos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Vermelho);
+    width: 100%;
+    padding-bottom: 32px;
+}
+
+.nossos-objetivos p {
+    max-width: 850px;
+    color: #fff;
+    padding: 0 10px;
+    margin: 8px 0;
+    text-align: justify;
 }
 
 :root {
@@ -419,18 +447,17 @@
     margin-bottom: 2rem;
     padding: var(--mv-padding);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   
 }
 
-.aparecerAnimate0{
+.aparecerAnimate0 {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .aparecerAnimate0.aparecer {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .mv-card:nth-child(even) {
@@ -444,7 +471,6 @@
 .mv-card:nth-child(even) h2 {
     color: #fff;
     font-weight: bold;
-
 }
 
 .mv-card__title {
@@ -459,8 +485,6 @@
     width: 65%;
     margin: 0;
 }
-
-
 
 /* RESPONSIVE */
 
@@ -483,7 +507,7 @@
     }
 
     .about-text h2 {
-        font-size: 20px;
+        font-size: 32px;
     }
 
     .mv-card {
@@ -994,7 +1018,7 @@
     font-size: 14px;
 }
 
-.opcao-doacao strong{
+.opcao-doacao strong {
     font-weight: bold;
 }
 
@@ -1255,7 +1279,7 @@
     gap: 8px;
 }
 
-.info-contato h4{
+.info-contato h4 {
     font-size: 16px;
     font-weight: bold;
 }
