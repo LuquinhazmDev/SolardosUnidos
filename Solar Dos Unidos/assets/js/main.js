@@ -67,6 +67,82 @@ window.addEventListener('resize', () => {
   }
 });
 
+const imagens = Array.from(document.querySelectorAll('.carousel-item img, .projects__image'));
+const imagemModal = document.getElementById('imagemModal');
+const imagemModalImg = document.querySelector('.imagem-modal__img');
+const fecharModal = document.querySelector('.imagem-modal__close');
+const btnPrevIM = document.querySelector('.imagem-modal__nav.left');
+const btnNextIM = document.querySelector('.imagem-modal__nav.right');
+
+let imagemAtualIndex = 0;
+
+function abrirModal(index) {
+  imagemAtualIndex = index;
+  imagemModal.style.display = 'flex';
+  atualizarImagemModal();
+}
+
+function atualizarImagemModal() {
+  const imagem = imagens[imagemAtualIndex];
+  imagemModalImg.src = imagem.src;
+  imagemModalImg.alt = imagem.alt;
+}
+
+// Eventos
+imagens.forEach((img, index) => {
+  img.addEventListener('click', () => abrirModal(index));
+});
+
+fecharModal.addEventListener('click', () => {
+  imagemModal.style.display = 'none';
+});
+
+imagemModal.addEventListener('click', e => {
+  if (e.target === imagemModal) {
+    imagemModal.style.display = 'none';
+  }
+});
+
+btnPrevIM.addEventListener('click', () => {
+  imagemAtualIndex = (imagemAtualIndex - 1 + imagens.length) % imagens.length;
+  atualizarImagemModal();
+});
+
+btnNextIM.addEventListener('click', () => {
+  imagemAtualIndex = (imagemAtualIndex + 1) % imagens.length;
+  atualizarImagemModal();
+});
+
+let startXIM = 0;
+let endXIM = 0;
+
+imagemModalImg.addEventListener('touchstart', (e) => {
+  startXIM = e.touches[0].clientX;
+});
+
+imagemModalImg.addEventListener('touchmove', (e) => {
+  endXIM = e.touches[0].clientX;
+});
+
+imagemModalImg.addEventListener('touchend', () => {
+  const diferenca = startXIM - endXIM;
+
+  if (Math.abs(diferenca) > 50) { // Deslize significativo
+    if (diferenca > 0) {
+      // Deslizou para a esquerda → próxima imagem
+      imagemAtualIndex = (imagemAtualIndex + 1) % imagens.length;
+    } else {
+      // Deslizou para a direita → imagem anterior
+      imagemAtualIndex = (imagemAtualIndex - 1 + imagens.length) % imagens.length;
+    }
+    atualizarImagemModal();
+  }
+
+  // Reset
+  startXIM = 0;
+  endXIM = 0;
+});
+
 
 // Depoimentos
 
@@ -144,7 +220,7 @@ let currentIndexModal = 0;
 document.querySelectorAll('.projects__button').forEach((button, index) => {
   button.addEventListener('click', () => {
     const texts = [
-      'Este projeto apoia jovens com oficinas de arte e cultura.',
+      'Este projeto atende 120 crianças na educação infantil em parceria com a Prefeitura Muncipal de São Paulo no Capão Redondo',
       'Projeto Realizado em 2025 em combate ao abuso e exploração sexual de crianças e adolescentes',
       'Atividades esportivas para fortalecer vínculos sociais.'
     ];
@@ -244,26 +320,26 @@ prevBtn.addEventListener('click', () => {
 
 const unidadeData = {
   1: {
-    title: "Endereço – Rua das Perobeiras, 360, Chácara Sta Maria, São Paulo / SP",
+    title: "Endereço: Rua das Perobeiras, 360, Chácara Sta Maria, São Paulo / SP",
     desc: "A comunidade do CEI SOLAR DOS UNIDOS I é composta por moradores da região de Valo velho, Zona Sul de São Paulo, " +
-      "formado pelos distritos de Capão Redondo, Campo Limpo e Valo Velho. A gestão democrática nos permite criar " +
+      "formado pelos distritos de Capão Redondo, Campo Limpo e Valo Velho. \n A gestão democrática nos permite criar " +
       "estratégias envolvendo toda a comunidade, com isso é possível observar e identificar as características e culturas " +
       "familiares, traçando o perfil da comunidade SOLAR DOS UNIDOS I.\n" +
       "Teremos como instrumento de apoio a pesquisa sociocultural familiar que irá contribuir com as ações e intencionalidades " +
-      "de acordo com as necessidades apresentadas. O objetivo é oferecer uma educação de qualidade respeitando as infâncias, " +
+      "de acordo com as necessidades apresentadas. \n O objetivo é oferecer uma educação de qualidade respeitando as infâncias, " +
       "oportunizando experiências significativas para todas as crianças.\n" +
-      "Os espaços do CEI contam com áreas externas com luz natural, favorecendo a percepção do dia. Conta com pisos térmicos e " +
+      "Os espaços do CEI contam com áreas externas com luz natural, favorecendo a percepção do dia. \n Conta com pisos térmicos e " +
       "emborrachados adequados para que todos brinquem de forma segura. Parques equipados com brinquedos, escorregadores, " +
       "piscina de bolinha, cama elástica, motocas, entre outros.\n" +
       "Temos uma comunidade participativa que colabora e contribui com as propostas pedagógicas oferecidas."
   },
   2: {
-    title: "Avenida Sabin, 176, Cidade Auxiliadora, São Paulo/SP",
-    desc: "Nós somos o CEI SOLAR DOS UNIDOS II, estamos a 7 anos à frente desse trabalho desde 2018, no estado de São Paulo - Capão Redondo, onde trabalhamos com faixa etária de 00 a 04 anos de idade, na nossa unidade a criança é vista como alteridade e empatia, procuramos compreender e enxergar o mundo por meio dos olhares das infâncias para melhor acolher e perceber seus conceitos e desejos de forma respeitosa, é um ser autônomo e protagonista de suas ações. A compreensão do crescimento da criança e do aprendizado leva em conta a relevância das influências biológicas e sociais, porém reconhece que esses fatores estão interligados: ambos impactam e ajudam no desenvolvimento do indivíduo em formação."
+    title: "Endereço: Avenida Sabin, 176, Cidade Auxiliadora, São Paulo/SP",
+    desc: "Nós somos o CEI SOLAR DOS UNIDOS II, estamos a 7 anos à frente desse trabalho desde 2018, no estado de São Paulo - Capão Redondo, onde trabalhamos com faixa etária de 00 a 04 anos de idade, na nossa unidade a criança é vista como alteridade e empatia, procuramos compreender e enxergar o mundo por meio dos olhares das infâncias para melhor acolher e perceber seus conceitos e desejos de forma respeitosa, é um ser autônomo e protagonista de suas ações. \n A compreensão do crescimento da criança e do aprendizado leva em conta a relevância das influências biológicas e sociais, porém reconhece que esses fatores estão interligados: ambos impactam e ajudam no desenvolvimento do indivíduo em formação."
   },
   3: {
-    title: "Rua Laudelino Gomes Ribeiro, 255, Jd Iracema, Taboão da Serra, SP",
-    desc: "A matriz da ONG Solar dos Unidos, localizada em Taboão da Serra (SP), atende crianças e adolescentes de 6 a 15 anos no contraturno escolar. O foco é acolher jovens em situação de vulnerabilidade social, oferecendo atividades educativas, culturais e de cidadania. Com o apoio de voluntários e parcerias, a unidade promove um ambiente seguro e acolhedor, contribuindo para o desenvolvimento integral e a melhoria da qualidade de vida das famílias atendidas."
+    title: "Endereço: Rua Laudelino Gomes Ribeiro, 255, Jd Iracema, Taboão da Serra, SP",
+    desc: "A matriz da ONG Solar dos Unidos, localizada em Taboão da Serra (SP), atende crianças e adolescentes de 6 a 15 anos no contraturno escolar. \n O foco é acolher jovens em situação de vulnerabilidade social, oferecendo atividades educativas, culturais e de cidadania. \n Com o apoio de voluntários e parcerias, a unidade promove um ambiente seguro e acolhedor, contribuindo para o desenvolvimento integral e a melhoria da qualidade de vida das famílias atendidas."
   }
 };
 
@@ -273,7 +349,13 @@ document.querySelectorAll('.unidade__botao').forEach(btn => {
     const id = this.getAttribute('data-unidade');
     const modal = document.getElementById('unidadeModal');
     document.getElementById('modal-unidade-title').textContent = unidadeData[id].title;
-    document.getElementById('modal-unidade-desc').textContent = unidadeData[id].desc;
+    const paragrafoFormatado = unidadeData[id].desc
+      .split('\n')
+      .map(paragrafo => `<p>${paragrafo.trim()}</p>`)
+      .join('');
+
+    document.getElementById('modal-unidade-desc').innerHTML = paragrafoFormatado;
+
     modal.style.display = 'block';
   });
 });
@@ -286,4 +368,23 @@ window.addEventListener('click', e => {
   if (e.target.id === 'unidadeModal') {
     document.getElementById('unidadeModal').style.display = 'none';
   }
+});
+
+
+const cards = document.querySelectorAll('.aparecerAnimate0');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('aparecer');
+    } else {
+      entry.target.classList.remove('aparecer'); // <- volta ao estado original
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+cards.forEach(card => {
+  observer.observe(card);
 });
