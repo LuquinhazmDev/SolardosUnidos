@@ -67,7 +67,7 @@ window.addEventListener('resize', () => {
   }
 });
 
-const imagens = Array.from(document.querySelectorAll('.carousel-item img, .projects__image'));
+const imagens = Array.from(document.querySelectorAll('.carousel-item img'));
 const imagemModal = document.getElementById('imagemModal');
 const imagemModalImg = document.querySelector('.imagem-modal__img');
 const fecharModal = document.querySelector('.imagem-modal__close');
